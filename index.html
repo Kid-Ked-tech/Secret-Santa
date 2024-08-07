@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secret Santa Pairings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+        .error {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Secret Santa Pairings</h1>
+    <form id="santaForm">
+        <label for="username">Enter your username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <input type="submit" value="Find Secret Santa">
+    </form>
+    <div class="result" id="result"></div>
+    <div class="error" id="error"></div>
+
+    <script>
+        const pairings = {
+            "Beck": "Dianah",
+            "Dan": "Derrick",
+            "Derrick": "Alex",
+            "Sylvia": "Becky",
+            "Rita": "Racheal",
+            "Racheal": "Ritah",
+            "Alex": "Mom",
+            "Vally": "Sylvia",
+            "Mom": "Vally",
+            "Dad": "Dan",
+            "Diana": "Dad"
+        };
+
+        document.getElementById('santaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const resultDiv = document.getElementById('result');
+            const errorDiv = document.getElementById('error');
+            resultDiv.innerHTML = '';
+            errorDiv.innerHTML = '';
+
+            if (pairings[username]) {
+                resultDiv.innerHTML = `Your Secret Santa is: ${pairings[username]}`;
+            } else {
+                errorDiv.innerHTML = 'Username not found. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
